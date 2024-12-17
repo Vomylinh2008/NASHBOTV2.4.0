@@ -2,11 +2,11 @@ const axios = require("axios");
 
 module.exports = {
     name: "ai",
-    description: "interact with gpt4",
+    description: "interact with GPT-4o Pro",
     nashPrefix: false,
     version: "1.0.0",
     cooldowns: 5,
-    aliases: ["ai"],
+    aliases: ["gpt4o"],
     execute(api, event, args, prefix) {
         const { threadID, messageID, senderID } = event;
         let prompt = args.join(" ");
@@ -20,13 +20,13 @@ module.exports = {
         }
 
         api.sendMessage(
-            "[ AI ]\n\n" +
+            "[ GPT-4o Pro ]\n\n" +
             "please wait...",
             threadID,
             (err, info) => {
                 if (err) return;
 
-                axios.get(`${global.NashBot.JOSHUA}api/gpt4?query=${encodeURIComponent(prompt)}`)
+                axios.get(`https://kaiz-apis.gleeze.com/api/gpt-4o-pro?q=${encodeURIComponent(prompt)}&uid=${senderID}&imageUrl=`)
                     .then(response => {
                         const reply = response.data.response;
                         api.editMessage(
