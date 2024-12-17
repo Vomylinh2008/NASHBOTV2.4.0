@@ -46,7 +46,7 @@ module.exports = {
                                 () => {
                                     fs.unlinkSync(videoPath);
                                     api.editMessage(
-                                        "[ Shoti ]\n\nVideo sent successfully!",
+                                        "Shoti sent successfully!",
                                         info.messageID
                                     );
                                 },
@@ -56,14 +56,14 @@ module.exports = {
 
                         writer.on('error', () => {
                             api.editMessage(
-                                "[ Shoti ]\n\nAn error occurred while processing the video.",
+                                "An error occurred while processing the video.",
                                 info.messageID
                             );
                         });
                     })
                     .catch(() => {
                         api.editMessage(
-                            "[ Shoti ]\n\nError fetching shoti",
+                            "Error fetching shoti",
                             info.messageID
                         );
                     });
