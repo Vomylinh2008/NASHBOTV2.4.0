@@ -1,6 +1,6 @@
 module.exports = {
     name: "adduser",
-    description: "Add a user to the group chat using their UID",
+    description: "Thêm một người dùng vào nhóm chat bằng UID của họ",
     nashPrefix: false,
     version: "1.0.0",
     role: "admin",
@@ -12,7 +12,7 @@ module.exports = {
         if (!uid) {
             return api.sendMessage(
                 "[ 𝙰𝙳𝙳 𝚄𝚂𝙴𝚁 ]\n\n" +
-                "❗ Please provide a UID to add.\n\nExample: adduser 1234567890",
+                "❗ Vui lòng cung cấp UID để thêm.\n\nVí dụ: adduser 1234567890",
                 threadID,
                 messageID
             );
@@ -20,7 +20,7 @@ module.exports = {
 
         api.sendMessage(
             "[ 𝙰𝙳𝙳 𝚄𝚂𝙴𝚁 ]\n\n" +
-            "Attempting to add the user...",
+            "Đang cố gắng thêm người dùng...",
             threadID,
             async (err, info) => {
                 if (err) return;
@@ -29,12 +29,12 @@ module.exports = {
                     await api.addUserToGroup(uid, threadID);
                     api.editMessage(
                         "[ 𝙰𝙳𝙳 𝚄𝚂𝙴𝚁 ]\n\n" +
-                        "User added successfully!\n\nHow to unsend a message?, react to it with a thumbs up (👍). If you are the sender, the bot will automatically unsend the message.",
+                        "Đã thêm người dùng thành công!\n\nCách để gỡ bỏ một tin nhắn? Hãy phản ứng với nó bằng biểu tượng ngón cái (👍). Nếu bạn là người gửi, bot sẽ tự động gỡ bỏ tin nhắn.",
                         info.messageID
                     );
                 } catch (error) {
                     api.sendMessage(
-                        "❌ Failed to add user. Please check the UID and try again.",
+                        "❌ Thêm người dùng thất bại. Vui lòng kiểm tra lại UID và thử lại.",
                         threadID,
                         messageID
                     );
