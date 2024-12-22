@@ -2,7 +2,7 @@ const axios = require("axios");
 
 module.exports = {
     name: "ai",
-    description: "interact with GPT-4o Pro",
+    description: "tương tác với GPT-4o Pro",
     nashPrefix: false,
     version: "1.0.0",
     cooldowns: 5,
@@ -10,7 +10,7 @@ module.exports = {
     execute(api, event, args, prefix) {
         const { threadID, messageID, senderID } = event;
         let prompt = args.join(" ");
-        if (!prompt) return api.sendMessage("Please enter a prompt.", threadID, messageID);
+        if (!prompt) return api.sendMessage("Vui lòng nhập một prompt.", threadID, messageID);
 
         if (!global.handle) {
             global.handle = {};
@@ -21,7 +21,7 @@ module.exports = {
 
         api.sendMessage(
             "[ GPT-4o Pro ]\n\n" +
-            "please wait...",
+            "vui lòng chờ...",
             threadID,
             (err, info) => {
                 if (err) return;
@@ -42,8 +42,8 @@ module.exports = {
                         };
                     })
                     .catch(error => {
-                        console.error("Error fetching data:", error.message);
-                        api.editMessage("Failed to fetch data. Please try again later.", info.messageID);
+                        console.error("Lỗi khi lấy dữ liệu:", error.message);
+                        api.editMessage("Không thể lấy dữ liệu. Vui lòng thử lại sau.", info.messageID);
                     });
             },
             messageID
